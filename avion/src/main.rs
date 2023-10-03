@@ -1,5 +1,4 @@
 use std::io::{self, prelude::*};
-use std::process;
 use regex::Regex;
 
 fn main() {
@@ -20,12 +19,12 @@ fn main() {
             cia.push_str(&count.to_string());
             cia.push(' ');
         }
-
-        if line.contains("CIA") {
-            println!("HE GOT AWAY!");
-            process::exit(0);
-        }
     }
-    println!("{}", cia.trim_end());
+    if cia.is_empty(){
+        println!("HE GOT AWAY!");
+    }
+    else {
+        println!("{}", cia.trim_end());
+    }
 }
 
