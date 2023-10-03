@@ -4,7 +4,7 @@ use regex::Regex;
 fn main() {
     let mut input = String::new();
     io::stdin().read_to_string(&mut input).expect("Lecture de stdin");
-    let lines = input.lines();
+    let mut lines = input.lines();
     let blimp_check = Regex::new(r"^([A-Z0-9-]){0,11}$").unwrap();
 
     let mut count = 0;
