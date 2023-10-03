@@ -3,16 +3,20 @@ use std::io::{self, prelude::*};
 fn main() {
     let mut input = String::new();
     io::stdin().read_to_string(&mut input).expect("Lecture de stdin");
-    let mut lines = input.lines();
-    lines.next();
+    let lines = input.lines();
 
-    let mut qaly = f64::from(0.0);
+    let mut winner = i32::from(0);
+    let mut winner_grade = i32::from(0);
+    let mut count = i32::from(0);
     for line in lines {
-        let mut values = line.split_whitespace();
-        let quality = values.next().map(|x| x.parse::<f64>().expect("Parse quality")).unwrap();
-        let years = values.next().map(|x| x.parse::<f64>().expect("Parse years")).unwrap();
-        qaly += quality * years;
+        count += 1;
+        let grades = line.split_whitespace().map(|x| x.parse::<i32>().expect("Parse grades"));
+        let sum_grade = grades.sum::<i32>();
+        if sum_grade > winner_grade {
+            winner = count;
+            winner_grade = sum_grade;
+        }
     }
-    println!("{:.3}", qaly);
+    println!("{} {}", winner, winner_grade);
 }
 
