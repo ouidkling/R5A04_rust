@@ -1,13 +1,31 @@
 use std::io::{self, prelude::*};
+use std::process;
+use regex::Regex;
 
 fn main() {
     let mut input = String::new();
     io::stdin().read_to_string(&mut input).expect("Lecture de stdin");
-    let mut lines = input.lines();
-    lines.next();
-    let raw_expenses = lines.next().map(|x| x.to_string()).unwrap();
-    let expenses = raw_expenses.split_whitespace().map(|x| x.parse::<i32>().expect("Entier"));
-    let sum_expenses = expenses.filter(|x| x < &0).sum::<i32>().abs();
-    println!("{}", sum_expenses);
+    let lines = input.lines();
+    let blimp_check = Regex::new(r"^([A-Z0-9-]){0,11}$").unwrap();
+
+    let mut count = 0;
+    let mut cia = String::new();
+    for line in lines {
+        count += 1;
+        if blimp_check.captures(line).is_none() {
+            panic!("Code invalide : {}", line);
+        };
+
+        if line.contains("FBI") {
+            cia.push_str(&count.to_string());
+            cia.push(' ');
+        }
+
+        if line.contains("CIA") {
+            println!("HE GOT AWAY!");
+            process::exit(0);
+        }
+    }
+    println!("{}", cia.trim_end());
 }
 
