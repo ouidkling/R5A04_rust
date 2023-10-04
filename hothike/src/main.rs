@@ -16,7 +16,14 @@ fn main() {
 
     for trip in vacation {
         count += 1;
-        let max_temp = trip.iter().max().unwrap();
+        // Pour retirer le 2e élément (le milieu)
+        let hiking : Vec<_> = trip.iter()
+            .enumerate()
+            .filter(|&(i, _)| i != 1)
+            .map(|(_, v)| v)
+            .collect();
+
+        let max_temp = hiking.into_iter().max().unwrap();
         if max_temp < &min_max_temp {
             min_max_temp = *max_temp;
             best_day = count;
