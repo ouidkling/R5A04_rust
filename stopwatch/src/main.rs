@@ -1,3 +1,5 @@
+// https://open.kattis.com/problems/stopwatch
+
 use std::io::{self, prelude::*};
 
 fn main() {
@@ -9,9 +11,8 @@ fn main() {
     if pressed % 2 == 0 {
         let mut seconds = 0;
 
-        let raw_ticking = lines.next().map(|x| x.to_string()).unwrap();
-        let raw_ticking2 = raw_ticking.split_whitespace().map(|x| x.parse::<i32>().expect("Entier")).collect::<Vec<i32>>();
-        let ticking = raw_ticking2.chunks(2);
+        let raw_ticking = lines.map(|x| x.parse::<i32>().expect("Entier")).collect::<Vec<i32>>();
+        let ticking = raw_ticking.chunks(2);
 
         for tick in ticking {
             seconds += tick[1] - tick[0];
@@ -22,4 +23,3 @@ fn main() {
         println!("still running");
     }
 }
-
