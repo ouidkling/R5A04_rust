@@ -1,3 +1,4 @@
+// https://open.kattis.com/problems/carrots
 use std::io::{self, prelude::*};
 
 fn main() {

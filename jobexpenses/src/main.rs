@@ -1,3 +1,4 @@
+// https://open.kattis.com/problems/jobexpenses
 use std::io::{self, prelude::*};
 
 fn main() {

@@ -1,3 +1,4 @@
+// https://open.kattis.com/problems/oddities
 use std::io::{self, prelude::*};
 
 fn make_status(n: i32) -> String {

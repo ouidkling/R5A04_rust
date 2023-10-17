@@ -1,5 +1,4 @@
 // https://open.kattis.com/problems/stopwatch
-
 use std::io::{self, prelude::*};
 
 fn main() {
