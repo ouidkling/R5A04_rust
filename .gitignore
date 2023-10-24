@@ -1,4 +1,4 @@
-*/.idea/
-*/target/
-*/debug/
-*/Cargo.lock
+*.idea/
+*target/
+*debug/
+*Cargo.lock
