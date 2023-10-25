@@ -12,17 +12,19 @@ fn main() {
     for line in lines
     {
         let candidate = line.to_string();
-        if candidate.eq(&"***".to_string()) {
+        if candidate == "***".to_string() {
             break
         }
-        if candidates.get(&candidate).is_some() {
-            let old_value = *candidates.get(&candidate).unwrap();
-            let new_value = old_value + 1;
-            candidates.remove(&candidate);
-            candidates.insert(candidate, new_value);
-        } else {
-            candidates.insert(candidate, 1);
-        }
+        // if candidates.get(&candidate).is_some() {
+        //     let old_value = *candidates.get(&candidate).unwrap();
+        //     let new_value = old_value + 1;
+        //     candidates.remove(&candidate);
+        //     candidates.insert(candidate, new_value);
+        // } else {
+        //     candidates.insert(candidate, 1);
+        // }
+        let count = candidates.entry(candidate.clone()).or_insert(0);
+        *count += 1;
     }
 
     let mut winner = (0, String::new());
@@ -41,7 +43,7 @@ fn main() {
         }
     }
 
-    if winner.0.eq(&second.0) {
+    if winner.0 == second.0 {
         println!("Runoff!")
     } else {
         println!("{}", winner.1)
